@@ -13,12 +13,21 @@ import android.widget.ImageButton;
 import static com.example.animations.R.*;
 
 public class MainActivity extends AppCompatActivity {
+    MediaPlayer player;
+    MediaPlayer player1;
+
     public void move1(View view) {
+        player.stop();
+        player=null;
+        if(player==null)
+        {
+            player=MediaPlayer.create(this,R.raw.start);
+
+        }
+        player.start();
         Intent intent = new Intent(this, MainActivity2.class);
         startActivity(intent);
     }
-
-    private Button start;
 
 
 
@@ -26,28 +35,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_main);
-       start=findViewById(id.start);
-        final MediaPlayer mediaPlayer=MediaPlayer.create(this, raw.start);
-
-        start.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                mediaPlayer.start();
+        player=MediaPlayer.create(this, raw.coco);
+        player.start();
 
 
-            }
-
-        });
     }
 
+        public void move3 (View view){
+            player=MediaPlayer.create(this, raw.coco);
+            player.start();
+            Intent intent = new Intent(this, MainActivity2.class);
+            startActivity(intent);
+        }
 
-
-
-
-    public void move3(View view) {
-        Intent intent = new Intent(this, MainActivity2.class);
-        startActivity(intent);
     }
-
-}
 
